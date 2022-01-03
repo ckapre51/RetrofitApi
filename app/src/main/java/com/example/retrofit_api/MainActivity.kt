@@ -79,14 +79,21 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextChange(p0: String?): Boolean {
                 if(p0?.isNotEmpty()==true) {
                     binding.recyclerView.visibility=View.VISIBLE
+                    binding.noResult.visibility= View.GONE
                         PopulationAdapter.populations=masterPopulationList.filter {
                             it.city.contains(p0,true)
                         }
+                    PopulationAdapter.notifyDataSetChanged()
+
+
+
                     if(PopulationAdapter.populations.isEmpty())
                     {
                         println("2")
 //                        binding.recyclerView.visibility=View.GONE
                         binding.noResult.visibility= View.VISIBLE
+                        PopulationAdapter.notifyDataSetChanged()
+
 
                     }
 
